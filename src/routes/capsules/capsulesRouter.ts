@@ -5,4 +5,8 @@ const capsuleRouter = Router();
 
 capsuleRouter.post('/list', capsuleController.list);
 
+capsuleRouter.post('/create', capsuleController.create);
+
+capsuleRouter.post('open', capsuleController.open);
+
 export default capsuleRouter;
