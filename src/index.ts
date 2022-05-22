@@ -13,13 +13,14 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
+app.use(express.static('./public'));
 
 app.use('/api', router);
 
 app.listen(PORT, async () => {
   console.log(PORT, 'server start');
   try {
-    await sequelize.authenticate();
+    await sequelize.sync();
     console.log('db success');
     await create_table_users();
     await create_table_capsules();
