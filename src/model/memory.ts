@@ -5,12 +5,12 @@ import { Capsules } from './capsule';
 
 interface MemoryAttributes {
   m_idx: number;
-  content: string;
+  m_content: string;
 }
 
 export class Memory extends Model<MemoryAttributes> {
   public readonly m_idx!: number;
-  public content!: string;
+  public m_content!: string;
 }
 
 Memory.init(
@@ -20,7 +20,7 @@ Memory.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    content: {
+    m_content: {
       type: DataTypes.STRING,
     },
   },
