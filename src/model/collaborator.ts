@@ -1,14 +1,27 @@
-import { Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import { Users } from './user';
 import { Capsules } from './capsule';
 import { sequelize } from './index';
 
-interface CollaboratorAttributes {}
+interface CollaboratorAttributes {
+  c_idx: number;
+  u_idx: number;
+}
 
-export class Collaborator extends Model<CollaboratorAttributes> {}
+export class Collaborator extends Model<CollaboratorAttributes> {
+  public c_idx!: number;
+  public u_idx!: number;
+}
 
 Collaborator.init(
-  {},
+  {
+    c_idx: {
+      type: DataTypes.INTEGER,
+    },
+    u_idx: {
+      type: DataTypes.INTEGER,
+    },
+  },
   {
     modelName: 'Collaborator',
     tableName: 'collaborator',

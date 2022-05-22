@@ -9,6 +9,7 @@ interface CapsulesAttribute {
   c_thumb: string | null;
   c_openAt: Date;
   c_location: string | null;
+  c_generator: number;
 }
 
 export class Capsules extends Model<CapsulesAttribute> {
@@ -18,6 +19,7 @@ export class Capsules extends Model<CapsulesAttribute> {
   public c_openAt!: Date;
   public c_thumb!: string | null;
   public c_location!: string | null;
+  public c_generator!: number;
 }
 
 Capsules.init(
@@ -26,6 +28,9 @@ Capsules.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    c_generator: {
+      type: DataTypes.INTEGER,
     },
     c_title: {
       type: DataTypes.STRING,
