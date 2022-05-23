@@ -58,3 +58,28 @@ export const search = async (req: Request, res: Response) => {
     res.send(response);
   }
 };
+
+export const quit = async (req: Request, res: Response) => {
+  try {
+    await Users.destroy({ where: req.body });
+    const response: Success<null> = {
+      result: 'success',
+      data: null,
+    };
+    res.send(response);
+  } catch (e) {
+    console.log(e);
+    let msg = '';
+    if (typeof e === 'string') {
+      msg = e;
+    } else if (e instanceof Error) {
+      msg = e.message;
+    }
+    const response: Failure<string> = {
+      result: 'fail',
+      error: msg,
+    };
+
+    res.send(response);
+  }
+};
