@@ -5,4 +5,6 @@ const userRouter = Router();
 
 userRouter.post('/editAlias', userController.editAlias);
 
+userRouter.post('/search', userController.search);
+
 export default userRouter;

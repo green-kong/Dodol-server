@@ -13,6 +13,35 @@ export const editAlias = async (req: Request, res: Response) => {
       result: 'success',
       data,
     };
+    res.send(response);
+  } catch (e) {
+    console.log(e);
+    let msg = '';
+    if (typeof e === 'string') {
+      msg = e;
+    } else if (e instanceof Error) {
+      msg = e.message;
+    }
+    const response: Failure<string> = {
+      result: 'fail',
+      error: msg,
+    };
+
+    res.send(response);
+  }
+};
+
+export const search = async (req: Request, res: Response) => {
+  const { u_id } = req.body;
+  try {
+    const data = (await Users.findOne({ where: { u_id } })) as Users;
+
+    const response: Success<Users> = {
+      result: 'success',
+      data,
+    };
+
+    res.send(response);
   } catch (e) {
     console.log(e);
     let msg = '';
