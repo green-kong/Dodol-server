@@ -7,6 +7,7 @@ import { create_table_collaborator } from './model/tables/collaborator.table';
 import { create_table_memoryImg } from './model/tables/memoryImg.table';
 import { create_table_memory_music } from './model/tables/memory.music';
 import { create_table_hidden } from './model/tables/hidden.table';
+import { create_table_memory } from './model/tables/memory.table';
 
 import { router } from './routes/index';
 
@@ -26,6 +27,7 @@ app.listen(PORT, async () => {
     await create_table_users();
     await create_table_capsules();
     await create_table_collaborator();
+    await create_table_memory();
     await create_table_memoryImg();
     await create_table_memory_music();
     await create_table_hidden();
