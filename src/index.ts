@@ -13,7 +13,7 @@ import { create_table_memory } from './model/tables/memory.table';
 
 import { router } from './routes/index';
 
-const PORT = process.env.PORT;
+const PORT = 4000;
 const app = express();
 
 app.use(
