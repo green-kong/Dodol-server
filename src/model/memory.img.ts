@@ -33,3 +33,8 @@ MemoryImg.init(
 MemoryImg.belongsTo(Memory, {
   foreignKey: 'm_idx',
 });
+
+Memory.hasMany(MemoryImg, {
+  foreignKey: 'm_idx',
+  sourceKey: 'm_idx',
+});

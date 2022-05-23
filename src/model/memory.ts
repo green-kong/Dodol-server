@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './index';
 import { Users } from './user';
 import { Capsules } from './capsule';
+import { MemoryMusic } from './memory.music';
 
 interface MemoryAttributes {
   m_idx: number;

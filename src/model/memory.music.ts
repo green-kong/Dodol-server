@@ -33,3 +33,8 @@ MemoryMusic.init(
 MemoryMusic.belongsTo(Memory, {
   foreignKey: 'm_idx',
 });
+
+Memory.hasOne(MemoryMusic, {
+  foreignKey: 'm_idx',
+  sourceKey: 'm_idx',
+});

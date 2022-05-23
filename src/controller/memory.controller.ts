@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { Memory } from '../model/memory';
 import { MemoryImg } from '../model/memory.img';
 import { MemoryMusic } from '../model/memory.music';
+import { Users } from '../model/user';
 import { Success, Failure } from '../types/response';
 
 export const create = async (req: Request, res: Response) => {
@@ -21,6 +22,48 @@ export const create = async (req: Request, res: Response) => {
     const response: Success<null> = {
       result: 'success',
       data: null,
+    };
+    res.send(response);
+  } catch (e) {
+    console.log(e);
+    let msg = '';
+    if (typeof e === 'string') {
+      msg = e;
+    } else if (e instanceof Error) {
+      msg = e.message;
+    }
+    const response: Failure<string> = {
+      result: 'fail',
+      error: msg,
+    };
+
+    res.send(response);
+  }
+};
+
+export const list = async (req: Request, res: Response) => {
+  try {
+    const data = await Memory.findAll({
+      where: req.body,
+      include: [
+        {
+          model: Users,
+          attributes: ['u_alias'],
+        },
+        {
+          model: MemoryMusic,
+          attributes: ['link'],
+        },
+        {
+          model: MemoryImg,
+          attributes: ['img'],
+        },
+      ],
+    });
+
+    const response: Success<Memory[]> = {
+      result: 'success',
+      data,
     };
     res.send(response);
   } catch (e) {
