@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
+
 import { sequelize } from './model';
 import { create_table_users } from './model/tables/user.table';
 import { create_table_capsules } from './model/tables/capsule.table';
@@ -14,6 +16,12 @@ import { router } from './routes/index';
 const PORT = process.env.PORT;
 const app = express();
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.static('./public'));
 
