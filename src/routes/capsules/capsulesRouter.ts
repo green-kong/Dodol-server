@@ -7,6 +7,6 @@ capsuleRouter.post('/list', capsuleController.list);
 
 capsuleRouter.post('/create', capsuleController.create);
 
-capsuleRouter.post('open', capsuleController.open);
+capsuleRouter.post('/hidden', capsuleController.hidden);
 
 export default capsuleRouter;
