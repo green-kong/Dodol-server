@@ -6,6 +6,7 @@ import { Success, Failure } from '../types/response';
 import { Hidden } from '../model/hidden';
 
 export const list = async (req: Request, res: Response) => {
+  console.log('check');
   const { u_idx } = req.body;
   try {
     const collarborator = (
