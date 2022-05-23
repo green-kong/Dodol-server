@@ -3,6 +3,7 @@ import { Capsules } from '../model/capsule';
 import { Collaborator } from '../model/collaborator';
 import { Op } from 'sequelize';
 import { Success, Failure } from '../types/response';
+import { Hidden } from '../model/hidden';
 
 export const list = async (req: Request, res: Response) => {
   const { u_idx } = req.body;
@@ -11,7 +12,7 @@ export const list = async (req: Request, res: Response) => {
       await Collaborator.findAll({ where: { u_idx } })
     ).map((v) => v.c_idx);
 
-    const data = await Capsules.findAll({
+    const tmp = await Capsules.findAll({
       where: {
         [Op.or]: [
           { c_generator: u_idx },
@@ -19,6 +20,15 @@ export const list = async (req: Request, res: Response) => {
         ],
       },
     });
+
+    const hiddenTmp = await Hidden.findAll({
+      where: { u_idx },
+      attributes: ['c_idx'],
+    });
+
+    const hiddenIdx = hiddenTmp.map((v) => v.c_idx);
+
+    const data = tmp.filter((v) => !hiddenIdx.includes(v.c_idx));
 
     const response: Success<Capsules[]> = {
       result: 'success',
