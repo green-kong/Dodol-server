@@ -80,4 +80,26 @@ export const create = async (req: Request, res: Response) => {
   }
 };
 
-export const open = (req: Request, res: Response) => {};
+export const hidden = async (req: Request, res: Response) => {
+  try {
+    await Hidden.create(req.body);
+    const response: Success<null> = {
+      result: 'success',
+      data: null,
+    };
+    res.send(response);
+  } catch (e) {
+    let msg = '';
+    if (typeof e === 'string') {
+      msg = e;
+    } else if (e instanceof Error) {
+      msg = e.message;
+    }
+    const response: Failure<string> = {
+      result: 'fail',
+      error: msg,
+    };
+
+    res.send(response);
+  }
+};
