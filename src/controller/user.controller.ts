@@ -86,6 +86,7 @@ export const quit = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
+<<<<<<< HEAD
   try {
     console.log(req.body);
     const url: string = 'https://kauth.kakao.com/oauth/token';
@@ -94,4 +95,10 @@ export const login = async (req: Request, res: Response) => {
   } catch (e) {
     console.log(e);
   }
+=======
+  console.log(req.body);
+  const url: string = 'https://kauth.kakao.com/oauth/token';
+  const result = await axios.post(url, req.body);
+  console.log(result);
+>>>>>>> def21e742eca301895638c499e6e67bfadba5e2a
 };
