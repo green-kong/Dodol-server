@@ -4,9 +4,9 @@ import { Collaborator } from '../model/collaborator';
 import { Op } from 'sequelize';
 import { Success, Failure } from '../types/response';
 import { Hidden } from '../model/hidden';
+import { Users } from '../model/user';
 
 export const list = async (req: Request, res: Response) => {
-  console.log('check');
   const { u_idx } = req.body;
   try {
     const collarborator = (
@@ -20,6 +20,12 @@ export const list = async (req: Request, res: Response) => {
           { c_idx: { [Op.or]: collarborator } },
         ],
       },
+      include: [
+        {
+          model: Users,
+          attributes: ['u_alias'],
+        },
+      ],
     });
 
     const hiddenTmp = await Hidden.findAll({
