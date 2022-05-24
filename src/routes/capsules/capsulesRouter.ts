@@ -14,4 +14,6 @@ capsuleRouter.post(
 
 capsuleRouter.post('/hidden', capsuleController.hidden);
 
+capsuleRouter.post('/open', capsuleController.open);
+
 export default capsuleRouter;

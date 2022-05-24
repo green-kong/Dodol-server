@@ -116,3 +116,28 @@ export const hidden = async (req: Request, res: Response) => {
     res.send(response);
   }
 };
+
+export const open = async (req: Request, res: Response) => {
+  const { c_idx } = req.body;
+  try {
+    await Capsules.update({ isOpened: true }, { where: { c_idx } });
+    const response: Success<null> = {
+      result: 'success',
+      data: null,
+    };
+    res.send(response);
+  } catch (e) {
+    let msg = '';
+    if (typeof e === 'string') {
+      msg = e;
+    } else if (e instanceof Error) {
+      msg = e.message;
+    }
+    const response: Failure<string> = {
+      result: 'fail',
+      error: msg,
+    };
+
+    res.send(response);
+  }
+};
