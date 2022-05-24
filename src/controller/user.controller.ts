@@ -86,18 +86,17 @@ export const quit = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
+  const { ACCESS_TOKEN } = req.body;
   try {
-    const body = {
-      grant_type: 'authorization_code',
-      client_id: '07e2741dea7ed6e8b2ba90e09024f231',
-      redirect_uri: 'http://127.0.0.1/api/user/login',
-      code: 'VwaBcornaagegct10pWv7uCR4IxFGdFEUXUrgBvHs7TA1svwURKB-ug_BdDMbCLVqZwoEwopcJ8AAAGA9P92Cw',
+    const url = 'https://kapi.kakao.com/v2/user/me';
+    const Header = {
+      headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+      },
     };
-    console.log(req.body);
-    const url: string = 'https://kauth.kakao.com/oauth/token';
-    const result = await axios.post(url, body);
-    console.log(result.data);
-  } catch (e: any) {
-    console.log(e.message);
+    const response = await axios.get(url, Header);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
   }
 };
