@@ -87,9 +87,15 @@ export const quit = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
+    const body = {
+      grant_type: 'authorization_code',
+      client_id: '07e2741dea7ed6e8b2ba90e09024f231',
+      redirect_uri: 'http://127.0.0.1/api/user/login',
+      code: 'VwaBcornaagegct10pWv7uCR4IxFGdFEUXUrgBvHs7TA1svwURKB-ug_BdDMbCLVqZwoEwopcJ8AAAGA9P92Cw',
+    };
     console.log(req.body);
     const url: string = 'https://kauth.kakao.com/oauth/token';
-    const result = await axios.post(url, req.body);
+    const result = await axios.post(url, body);
     console.log(result.data);
   } catch (e: any) {
     console.log(e.message);
