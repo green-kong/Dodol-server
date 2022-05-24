@@ -54,6 +54,7 @@ Capsules.init(
     },
     isOpened: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
