@@ -83,3 +83,8 @@ export const quit = async (req: Request, res: Response) => {
     res.send(response);
   }
 };
+
+export const login = (req: Request, res: Response) => {
+  console.log('check');
+  console.log(req.body);
+};
