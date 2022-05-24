@@ -87,7 +87,7 @@ export const quit = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   const { ACCESS_TOKEN } = req.body;
-  let tmp: AxiosResponse<any, any> | Failure<any>;
+  let tmp: AxiosResponse<any> | Failure<any>;
   try {
     const url = 'https://kapi.kakao.com/v2/user/me';
     const Header = {
