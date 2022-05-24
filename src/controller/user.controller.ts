@@ -96,6 +96,7 @@ export const login = async (req: Request, res: Response) => {
       },
     };
     tmp = await axios.get(url, Header);
+    console.log(tmp);
   } catch (err) {
     console.log(err);
     tmp = {
@@ -111,6 +112,7 @@ export const login = async (req: Request, res: Response) => {
     const { nickname } = properties;
 
     const result = await Users.findOne({ where: { u_id: id } });
+    console.log(result);
 
     if (result) {
       const response: Success<Users> = {
@@ -125,6 +127,7 @@ export const login = async (req: Request, res: Response) => {
       };
       await Users.create(payload as any);
       const data = (await Users.findOne({ where: { u_id: id } })) as Users;
+      console.log(data);
       const response: Success<Users> = {
         result: 'success',
         data,
