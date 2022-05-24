@@ -8,4 +8,6 @@ userRouter.post('/editAlias', userController.editAlias);
 userRouter.post('/search', userController.search);
 
 userRouter.post('/quit', userController.quit);
+
+userRouter.post('/login', userController.login);
 export default userRouter;
