@@ -10,6 +10,7 @@ interface CapsulesAttribute {
   c_openAt: Date;
   c_location: string | null;
   c_generator: number;
+  isOpened: Boolean;
 }
 
 export class Capsules extends Model<CapsulesAttribute> {
@@ -20,6 +21,7 @@ export class Capsules extends Model<CapsulesAttribute> {
   public c_thumb!: string | null;
   public c_location!: string | null;
   public c_generator!: number;
+  public isOpened!: Boolean;
 }
 
 Capsules.init(
@@ -49,6 +51,9 @@ Capsules.init(
     },
     c_thumb: {
       type: DataTypes.STRING,
+    },
+    isOpened: {
+      type: DataTypes.BOOLEAN,
     },
   },
   {

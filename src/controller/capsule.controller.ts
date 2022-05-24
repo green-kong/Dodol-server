@@ -62,7 +62,13 @@ export const list = async (req: Request, res: Response) => {
 export const create = async (req: Request, res: Response) => {
   const { collaborator, ...rest } = req.body;
   try {
-    const result = await Capsules.create(rest);
+    let result: Capsules;
+    if (req.file) {
+      const { filename } = req.file as Express.Multer.File;
+      result = await Capsules.create({ ...rest, c_thumb: filename });
+    } else {
+      result = await Capsules.create(rest);
+    }
     collaborator.forEach(async (v: number) => {
       await Collaborator.create({ c_idx: result.c_idx, u_idx: v });
     });
