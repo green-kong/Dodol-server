@@ -88,10 +88,10 @@ export const quit = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   try {
     console.log(req.body);
-    // const url: string = 'https://kauth.kakao.com/oauth/token';
-    // const result = await axios.post(url, req.body);
-    // console.log(result.data);
-  } catch (e) {
-    console.log(e);
+    const url: string = 'https://kauth.kakao.com/oauth/token';
+    const result = await axios.post(url, req.body);
+    console.log(result.data);
+  } catch (e: any) {
+    console.log(e.message);
   }
 };
