@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Users } from '../model/user';
 import { Success, Failure } from '../types/response';
+import axios from 'axios';
 
 export const editAlias = async (req: Request, res: Response) => {
   try {
@@ -84,7 +85,13 @@ export const quit = async (req: Request, res: Response) => {
   }
 };
 
-export const login = (req: Request, res: Response) => {
-  console.log('check');
-  console.log(req.body);
+export const login = async (req: Request, res: Response) => {
+  try {
+    console.log(req.body);
+    const url: string = 'https://kauth.kakao.com/oauth/token';
+    const result = await axios.post(url, req.body);
+    console.log(result.data);
+  } catch (e) {
+    console.log(e);
+  }
 };
