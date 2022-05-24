@@ -62,7 +62,13 @@ export const list = async (req: Request, res: Response) => {
 export const create = async (req: Request, res: Response) => {
   const { collaborator, ...rest } = req.body;
   try {
-    const result = await Capsules.create(rest);
+    let result: Capsules;
+    if (req.file) {
+      const { filename } = req.file as Express.Multer.File;
+      result = await Capsules.create({ ...rest, c_thumb: filename });
+    } else {
+      result = await Capsules.create(rest);
+    }
     collaborator.forEach(async (v: number) => {
       await Collaborator.create({ c_idx: result.c_idx, u_idx: v });
     });
@@ -90,6 +96,31 @@ export const create = async (req: Request, res: Response) => {
 export const hidden = async (req: Request, res: Response) => {
   try {
     await Hidden.create(req.body);
+    const response: Success<null> = {
+      result: 'success',
+      data: null,
+    };
+    res.send(response);
+  } catch (e) {
+    let msg = '';
+    if (typeof e === 'string') {
+      msg = e;
+    } else if (e instanceof Error) {
+      msg = e.message;
+    }
+    const response: Failure<string> = {
+      result: 'fail',
+      error: msg,
+    };
+
+    res.send(response);
+  }
+};
+
+export const open = async (req: Request, res: Response) => {
+  const { c_idx } = req.body;
+  try {
+    await Capsules.update({ isOpened: true }, { where: { c_idx } });
     const response: Success<null> = {
       result: 'success',
       data: null,
