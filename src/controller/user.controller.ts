@@ -88,7 +88,7 @@ export const quit = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   console.log(req.body);
   const { ACCESS_TOKEN } = req.body;
-
+  let tmp: AxiosResponse;
   try {
     const url = 'https://kapi.kakao.com/v2/user/me';
     const Header = {
@@ -96,15 +96,26 @@ export const login = async (req: Request, res: Response) => {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
       },
     };
-    const tmp = await axios.get(url, Header);
-    console.log(tmp);
+    tmp = await axios.get(url, Header);
+  } catch (e) {
+    console.log('액시오스 에러');
+    console.log(e);
 
+    const response: Failure<string> = {
+      result: 'fail',
+      error: '토큰 에러',
+    };
+
+    res.send(response);
+    return;
+  }
+
+  try {
     const { data } = tmp as AxiosResponse;
     const { id, properties } = data;
     const { nickname } = properties;
 
     const result = await Users.findOne({ where: { u_id: id } });
-    console.log(result);
 
     if (result) {
       const response: Success<Users> = {
@@ -119,7 +130,6 @@ export const login = async (req: Request, res: Response) => {
       };
       await Users.create(payload as any);
       const data = (await Users.findOne({ where: { u_id: id } })) as Users;
-      console.log(data);
       const response: Success<Users> = {
         result: 'success',
         data,
