@@ -10,4 +10,6 @@ userRouter.post('/search', userController.search);
 userRouter.post('/quit', userController.quit);
 
 userRouter.post('/login', userController.login);
+
+userRouter.get('/login', userController.loading);
 export default userRouter;

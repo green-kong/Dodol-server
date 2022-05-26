@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { Users } from '../model/user';
 import { Success, Failure } from '../types/response';
 import axios, { AxiosResponse } from 'axios';
+import path from 'path';
 
 export const editAlias = async (req: Request, res: Response) => {
   try {
@@ -152,4 +153,10 @@ export const login = async (req: Request, res: Response) => {
 
     res.send(response);
   }
+};
+
+export const loading = (req: Request, res: Response) => {
+  const adf = path.join(__dirname, '../../loading.html');
+  console.log(adf);
+  res.sendFile(adf);
 };
