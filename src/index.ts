@@ -13,6 +13,8 @@ import { create_table_memory } from './model/tables/memory.table';
 
 import { router } from './routes/index';
 
+const staticDir =
+  process.env.NODE_ENV === 'production' ? '../src/public' : './public';
 const PORT = 4000;
 const app = express();
 
@@ -24,7 +26,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static('./public'));
+app.use(express.static(staticDir));
 
 app.use('/api', router);
 
