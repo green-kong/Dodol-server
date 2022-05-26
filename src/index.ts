@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 
 import { sequelize } from './model';
 import { create_table_users } from './model/tables/user.table';
@@ -26,7 +27,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(staticDir));
+app.use(express.static(path.join(__dirname, staticDir)));
 
 app.use('/api', router);
 
