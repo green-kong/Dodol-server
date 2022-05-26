@@ -72,10 +72,22 @@ export const create = async (req: Request, res: Response) => {
     collaborator.forEach(async (v: number) => {
       await Collaborator.create({ c_idx: result.c_idx, u_idx: v });
     });
-    const response: Success<null> = {
+
+    const data = (await Capsules.findOne({
+      where: { c_idx: result.c_idx },
+      include: [
+        {
+          model: Users,
+          attributes: ['u_alias'],
+        },
+      ],
+    })) as Capsules;
+
+    const response: Success<Capsules> = {
       result: 'success',
-      data: null,
+      data,
     };
+
     res.send(response);
   } catch (e) {
     let msg = '';
