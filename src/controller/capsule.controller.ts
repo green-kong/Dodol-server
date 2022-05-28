@@ -25,6 +25,16 @@ export const list = async (req: Request, res: Response) => {
           model: Users,
           attributes: ['u_alias'],
         },
+        {
+          model: Collaborator,
+          attributes: [u_idx],
+          include: [
+            {
+              model: Users,
+              attributes: ['u_alias'],
+            },
+          ],
+        },
       ],
     });
 
