@@ -35,6 +35,16 @@ Collaborator.belongsTo(Users, {
   foreignKey: 'u_idx',
 });
 
+Users.hasMany(Collaborator, {
+  foreignKey: 'u_idx',
+  sourceKey: 'u_idx',
+});
+
 Collaborator.belongsTo(Capsules, {
   foreignKey: 'c_idx',
+});
+
+Capsules.hasMany(Collaborator, {
+  foreignKey: 'c_idx',
+  sourceKey: 'c_idx',
 });
