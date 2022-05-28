@@ -46,5 +46,5 @@ Collaborator.belongsTo(Capsules, {
 
 Capsules.hasMany(Collaborator, {
   foreignKey: 'c_idx',
-  sourceKey: 'c_idx',
+  sourceKey: 'c_generator',
 });

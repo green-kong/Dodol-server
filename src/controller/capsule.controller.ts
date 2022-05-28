@@ -27,7 +27,6 @@ export const list = async (req: Request, res: Response) => {
         },
         {
           model: Collaborator,
-          attributes: [u_idx],
           include: [
             {
               model: Users,
@@ -54,6 +53,7 @@ export const list = async (req: Request, res: Response) => {
 
     res.send(response);
   } catch (e) {
+    console.log(e);
     let msg = '';
     if (typeof e === 'string') {
       msg = e;
