@@ -12,7 +12,6 @@ export const list = async (req: Request, res: Response) => {
     const collarborator = (
       await Collaborator.findAll({ where: { u_idx } })
     ).map((v) => v.c_idx);
-    console.log(collarborator);
     const tmp = await Capsules.findAll({
       where: {
         [Op.or]: [
