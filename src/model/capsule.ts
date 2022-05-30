@@ -33,6 +33,7 @@ Capsules.init(
     },
     c_generator: {
       type: DataTypes.INTEGER,
+      allowNull: true,
     },
     c_title: {
       type: DataTypes.STRING,
@@ -68,4 +69,11 @@ Capsules.init(
 
 Capsules.belongsTo(Users, {
   foreignKey: 'c_generator',
+  onDelete: 'SET NULL',
+});
+
+Users.hasMany(Capsules, {
+  foreignKey: 'c_generator',
+  sourceKey: 'u_idx',
+  onDelete: 'SET NULL',
 });
