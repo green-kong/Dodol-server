@@ -3,6 +3,7 @@ import { Users } from '../model/user';
 import { Success, Failure } from '../types/response';
 import axios, { AxiosResponse } from 'axios';
 import path from 'path';
+import { sequelize } from '../model';
 
 export const editAlias = async (req: Request, res: Response) => {
   try {
@@ -63,7 +64,9 @@ export const search = async (req: Request, res: Response) => {
 
 export const quit = async (req: Request, res: Response) => {
   try {
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true });
     await Users.destroy({ where: req.body });
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1', { raw: true });
     const response: Success<null> = {
       result: 'success',
       data: null,
