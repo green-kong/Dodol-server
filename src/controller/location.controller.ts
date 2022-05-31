@@ -4,6 +4,6 @@ import { Success, Failure } from '../types/response';
 
 
 export const list = async (req: Request, res: Response) => {
-  console.log(req.query)
+  console.log(req.body)
   res.send('hey')
 }
