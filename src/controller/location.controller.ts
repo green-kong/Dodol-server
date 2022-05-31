@@ -9,7 +9,7 @@ export const list = async (req: Request, res: Response) => {
   console.log(options)
   let locationList;
   try {
-    const response = await axios.get(`https://dapi.kakao.com/v2/local/search/address.json?analyze_type=similar&page=1&size=10&query=${options.location}}`, options.headers)
+    const response = await axios.get(`https://dapi.kakao.com/v2/local/search/address.json?analyze_type=similar&page=1&size=10&query=${options.location}}`, { headers: options.headers })
     locationList = response.data
   } catch (e) {
     console.log(e)
