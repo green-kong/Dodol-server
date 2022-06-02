@@ -70,12 +70,10 @@ export const list = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   const { collaborator, ...rest } = req.body;
-  console.log(req.body, 'body 출력');
   try {
     let result: Capsules;
     if (req.file) {
       const { filename } = req.file as Express.Multer.File;
-      console.log(filename, '파일이름 출력');
       result = await Capsules.create({ ...rest, c_thumb: filename });
     } else {
       result = await Capsules.create(rest);
