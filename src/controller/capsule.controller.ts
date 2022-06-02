@@ -70,7 +70,6 @@ export const list = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   const { collaborator, ...rest } = req.body;
-  console.log(collaborator);
   try {
     let result: Capsules;
     if (req.file) {
