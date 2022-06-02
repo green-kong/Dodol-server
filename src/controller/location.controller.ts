@@ -7,12 +7,12 @@ import axios from 'axios';
 export const list = async (req: Request, res: Response) => {
   const options = req.body
   console.log(options.location)
-  const url = encodeURI(`https://dapi.kakao.com/v2/local/search/address.json?analyze_type=similar&page=1&size=10&query=${options.location}`)
-  console.log(url)
+  const url = encodeURI(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${options.location.longitude}&y=${options.location.latitude}&input_coord=WGS84`)
   let locationList;
   try {
     const response = await axios.get(url, { headers: options.headers })
     locationList = response.data
+    console.log(locationList)
   } catch (e) {
     console.log(e)
   }
