@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "dev_kong",
+    "username": "dodol",
     "password": "qwer1234",
-    "database": "timecapsule",
-    "host": "localhost",
+    "database": "dodol",
+    "host": "43.200.42.181",
     "dialect": "mysql"
   },
   "test": {
