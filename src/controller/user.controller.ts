@@ -10,12 +10,13 @@ export const editAlias = async (req: Request, res: Response) => {
     const { u_idx, u_alias } = req.body;
     const result = await Users.update({ u_alias }, { where: { u_idx } });
     const data = (await Users.findOne({
-      where: { u_idx: result[0] },
+      where: { u_idx },
     })) as Users;
     const response: Success<Users> = {
       result: 'success',
       data,
     };
+    console.log(data);
     res.send(response);
   } catch (e) {
     console.log(e);
