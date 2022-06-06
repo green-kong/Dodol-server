@@ -1,6 +1,6 @@
 
 # 💫  DODOL 프로젝트 소개
-<a href="https://makehabit.co.kr/"> <img alt="습관삼끼" src="./assets/readme/dodol.jpg" width="500" height="300"> </a>
+![dodol](https://user-images.githubusercontent.com/96301958/172198085-e3400ef0-8733-47c8-91c1-9acb7b21e6c7.jpeg)
 
 ###  위치기반 타임캡슐 서비스
 #### 친구들과 함께 장소를 정해 추억을 담은 타임캡슐을 묻어보세요!
@@ -67,8 +67,8 @@
 
 # 🔨 Tech Stack
   
-<img alt="도돌 기술스택" src="./assets/readme/dodol_techStack.png" width="800">
-<br>
+![dodol_techStack](https://user-images.githubusercontent.com/96301958/172198238-2a9a3187-efe2-49e4-9f03-2d62fe94f334.png)
+
 <br>
 
 # <a href="https://github.com/hb707/Dodol-app/wiki"> 👉 Wiki </a>
