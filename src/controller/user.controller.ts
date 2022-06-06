@@ -16,7 +16,6 @@ export const editAlias = async (req: Request, res: Response) => {
       result: 'success',
       data,
     };
-    console.log(data);
     res.send(response);
   } catch (e) {
     console.log(e);
