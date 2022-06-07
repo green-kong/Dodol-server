@@ -70,7 +70,6 @@ export const list = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   const { collaborator, ...rest } = req.body;
-  console.log(collaborator);
   try {
     let result: Capsules;
     if (req.file) {
@@ -79,9 +78,11 @@ export const create = async (req: Request, res: Response) => {
     } else {
       result = await Capsules.create(rest);
     }
-    collaborator.forEach(async (v: number) => {
-      await Collaborator.create({ c_idx: result.c_idx, u_idx: v });
-    });
+    if (collaborator) {
+      collaborator.forEach(async (v: number) => {
+        await Collaborator.create({ c_idx: result.c_idx, u_idx: v });
+      });
+    }
 
     const data = (await Capsules.findOne({
       where: { c_idx: result.c_idx },
