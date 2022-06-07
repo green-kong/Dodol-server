@@ -82,6 +82,7 @@ export const create = async (req: Request, res: Response) => {
       await Collaborator.create({ c_idx: result.c_idx, u_idx: v });
     });
 
+    console.log('check1');
     const data = (await Capsules.findOne({
       where: { c_idx: result.c_idx },
       include: [
@@ -91,7 +92,7 @@ export const create = async (req: Request, res: Response) => {
         },
       ],
     })) as Capsules;
-
+    console.log('check2');
     const response: Success<Capsules> = {
       result: 'success',
       data,
